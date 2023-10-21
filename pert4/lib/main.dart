@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int _currentIndex = 0; // Move _currentIndex to the state
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +88,41 @@ class MyApp extends StatelessWidget {
             buttonSection,
             textSection,
           ],
+        ),
+        floatingActionButton: ElevatedButton(
+          onPressed: () {
+            // Add your button's functionality here
+          },
+          child: Icon(Icons.add),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue, // Customize the button's background color
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Optional location for the button
+
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+          onTap: (int index) {
+            // Handle navigation bar item clicks here
+            // For example, you can use setState to change the current index.
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
     );
